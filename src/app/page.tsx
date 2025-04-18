@@ -1,18 +1,12 @@
 'use client';
 
-import Image from "next/image";
-import styles from "./page.module.css";
-import { ConsultaCronogramaView } from "./presentation/consultar-cronograma-view";
+import { IConsultaCronogramaService } from "./contracts/iconsultar-cronograma-service";
+import { ConsultaCronogramaContainer } from "./presentation/ConsultarCronograma/consultar-cronograma-container";
 
 export default function Home() {
   return (
     <>
-      <ConsultaCronogramaView
-        cronograma={null}
-        id="default-id"
-        onChange={() => {}}
-        onBuscar={() => {}}
-      />
+      <ConsultaCronogramaContainer servicoConsultaCronograma={undefined as unknown as IConsultaCronogramaService}/>
     </>
   );
 }

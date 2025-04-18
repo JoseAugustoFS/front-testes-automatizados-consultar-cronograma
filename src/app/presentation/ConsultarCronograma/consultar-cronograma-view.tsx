@@ -1,8 +1,8 @@
 'use client';
 
 import React from "react";
-import { Cronograma } from "../domain/entities/cronograma";
-import { Atividade } from "../domain/entities/atividade";
+import { Cronograma } from "../../domain/entities/cronograma";
+import { Atividade } from "../../domain/entities/atividade";
 
 interface ConsultaCronogramaViewProps {
     cronograma: Cronograma | null;

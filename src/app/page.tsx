@@ -1,11 +1,13 @@
 'use client';
 
-import { ConsultaCronogramaPresenter } from "./presentation/ConsultarCronograma/consultar-cronograma-presenter";
+import { BotaoConsulta } from "./presentation/Login/BotaoConsulta/BotaoConsulta";
+import LoginPage from "./presentation/Login/Login/LoginPage";
 
 export default function Home() {
   return (
     <>
-      <ConsultaCronogramaPresenter/>
+      <LoginPage/>
+      <BotaoConsulta/>      
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Cronograma } from "../../domain/entities/cronograma";
 import { IConsultaCronogramaService } from "../../contracts/iconsultar-cronograma-service";
-import { ConsultaCronogramaView } from "../consultar-cronograma-view";
+import { ConsultaCronogramaView } from "./consultar-cronograma-view";
 
 export interface ConsultaCronogramaContainerProps {
     servicoConsultaCronograma: IConsultaCronogramaService;

@@ -42,27 +42,16 @@ export function ConsultaCronogramaContainer({ servicoConsultaCronograma }: Consu
     };
 
     return (
-        <div>
-            {error && (
-                <div style={{ color: 'red', marginBottom: '10px' }}>
-                    Erro: {error}
-                </div>
-            )}
-
-            {mensagem && (
-                <div style={{ color: 'orange', marginBottom: '10px' }}>
-                    {mensagem}
-                </div>
-            )}
-            
+        <div> 
             <ConsultaCronogramaView 
                 id={id}
                 cronograma={cronograma}
                 onChange={handleChange}
                 onBuscar={handleBuscar}
+                loading={loading}
+                error={error}
+                mensagem={mensagem}
             />
-
-            {loading && <div>Carregando...</div>}
         </div>
     );
 }

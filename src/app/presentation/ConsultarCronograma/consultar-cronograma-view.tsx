@@ -2,16 +2,18 @@
 
 import React from "react";
 import { Cronograma } from "../../domain/entities/cronograma";
-import { Atividade } from "../../domain/entities/atividade";
 
 interface ConsultaCronogramaViewProps {
     cronograma: Cronograma | null;
     id: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onBuscar: () => void;
+    loading: boolean;
+    error: string | null;
+    mensagem: string | null;
 }
 
-export function ConsultaCronogramaView({cronograma, id, onChange, onBuscar}: ConsultaCronogramaViewProps) {
+export function ConsultaCronogramaView({cronograma, id, onChange, onBuscar, loading, error, mensagem}: ConsultaCronogramaViewProps) {
     return (
         <div>
             <h3>Consultar Cronograma</h3>
@@ -24,17 +26,37 @@ export function ConsultaCronogramaView({cronograma, id, onChange, onBuscar}: Con
             {cronograma ? (
                 <div>
                     <h4>Cronograma: {cronograma.id}</h4>
-                    <ul>
-                        {cronograma.atividades.map((atividade, index) => (
-                            <li key={index}>
-                                <strong>Data:</strong> {atividade.data} <br />
-                                <strong>Descrição:</strong> {atividade.descricao}
-                            </li>
-                        ))}
-                    </ul>
+                    <table>
+                        <thead>
+                            <tr>
+                            <th>Data</th>
+                            <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {cronograma.atividades.map((atividade, index) => (
+                                <tr key={index}>
+                                    <td>{atividade.data}</td>
+                                    <td>{atividade.descricao}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             ) : (
-                <p>Nenhum cronograma encontrado.</p>
+                <></>
+            )}
+            {loading && <div>Carregando...</div>}
+            {error && (
+                <div style={{ color: 'red', marginBottom: '10px' }}>
+                    Erro: {error}
+                </div>
+            )}
+
+            {mensagem && (
+                <div style={{ color: 'orange', marginBottom: '10px' }}>
+                    {mensagem}
+                </div>
             )}
         </div>
     );

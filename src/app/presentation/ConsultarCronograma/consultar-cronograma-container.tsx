@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Cronograma } from "../../domain/entities/cronograma";
 import { IConsultaCronogramaService } from "../../contracts/iconsultar-cronograma-service";
-import { ConsultaCronogramaView } from "./consultar-cronograma-view";
+import { ConsultaCronogramaView as DefaultConsultaCronogramaView } from "./consultar-cronograma-view";
 
 export interface ConsultaCronogramaContainerProps {
     servicoConsultaCronograma: IConsultaCronogramaService;
+    ConsultaCronogramaView?: React.ComponentType<any>;
 }
 
-export function ConsultaCronogramaContainer({ servicoConsultaCronograma }: ConsultaCronogramaContainerProps) {
+export function ConsultaCronogramaContainer({servicoConsultaCronograma, ConsultaCronogramaView = DefaultConsultaCronogramaView}: ConsultaCronogramaContainerProps) {
     const [id, setId] = useState<string>('');
     const [cronograma, setCronograma] = useState<Cronograma | null>(null);
     const [loading, setLoading] = useState(false);
@@ -15,8 +16,7 @@ export function ConsultaCronogramaContainer({ servicoConsultaCronograma }: Consu
     const [mensagem, setMensagem] = useState<string | null>(null);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = event.target;
-        setId(value);
+        setId(event.target.value);
     };
 
     const handleBuscar = async () => {
@@ -24,9 +24,7 @@ export function ConsultaCronogramaContainer({ servicoConsultaCronograma }: Consu
             setLoading(true);
             setError(null);
             setMensagem(null);
-
             const resultado = await servicoConsultaCronograma.obterPorId(id);
-
             if (resultado) {
                 setCronograma(resultado);
             } else {
@@ -42,16 +40,14 @@ export function ConsultaCronogramaContainer({ servicoConsultaCronograma }: Consu
     };
 
     return (
-        <div> 
-            <ConsultaCronogramaView 
-                id={id}
-                cronograma={cronograma}
-                onChange={handleChange}
-                onBuscar={handleBuscar}
-                loading={loading}
-                error={error}
-                mensagem={mensagem}
-            />
-        </div>
+        <ConsultaCronogramaView
+            id={id}
+            cronograma={cronograma}
+            onChange={handleChange}
+            onBuscar={handleBuscar}
+            loading={loading}
+            error={error}
+            mensagem={mensagem}
+        />
     );
 }

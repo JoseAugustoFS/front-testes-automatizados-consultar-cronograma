@@ -3,7 +3,7 @@
 import React from "react";
 import { Cronograma } from "../../domain/entities/cronograma";
 
-interface ConsultaCronogramaViewProps {
+export interface ConsultaCronogramaViewProps {
     cronograma: Cronograma | null;
     id: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

@@ -167,4 +167,5 @@ describe("ConsultaCronogramaContainer", () => {
       expect(screen.getByText("Cronograma: 123")).toBeInTheDocument();
     });
   });
+  
 });

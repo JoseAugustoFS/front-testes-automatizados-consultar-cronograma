@@ -102,4 +102,21 @@ describe("ConsultaCronogramaView", () => {
 
         expect(clicked).toBe(true);
     });
+
+    it("deve exibir o texto de carregando quando loading for true", () => {
+        const mockProps: ConsultaCronogramaViewProps = {
+            cronograma: null,
+            id: "123",
+            onChange: () => {},
+            onBuscar: () => {},
+            loading: true,
+            error: null,
+            mensagem: null,
+        };
+    
+        render(<ConsultaCronogramaView {...mockProps} />);
+    
+        expect(screen.getByText("Carregando...")).toBeInTheDocument();
+    });
+    
 });
